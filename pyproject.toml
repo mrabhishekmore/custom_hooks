@@ -6,10 +6,11 @@ build-backend = "setuptools.build_meta"
 name = "custom-hooks"
 version = "0.1.0"
 description = "Simple Hello Hook"
+readme = "README.md"
 requires-python = ">=3.7"
 
 [project.scripts]
 hello-hook = "hooks.hello_hook:main"
 
-[tool.setuptools.packages.find]
-exclude = ["tests", "tests.*"]
+[tool.setuptools]
+packages = ["hooks"]
