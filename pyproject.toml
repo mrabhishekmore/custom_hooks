@@ -5,8 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "custom-hooks"
 version = "0.1.0"
-description = "Pre-commit hooks for SonarQube"
-dependencies = ["requests"]
+description = "Simple Hello Hook"
+readme = "README.md"
+requires-python = ">=3.7"
 
 [project.scripts]
-check-sonar-quality-gate = "hooks.sonar_checks:main"
+hello-hook = "hooks.hello_hook:main"
+
+[tool.setuptools.packages.find]
+exclude = ["tests", "tests.*"]
