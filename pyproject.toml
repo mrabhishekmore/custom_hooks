@@ -1,16 +1,17 @@
 [build-system]
-requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+requires = ["setuptools", "wheel"]
 
 [project]
 name = "custom-hooks"
 version = "0.1.0"
-description = "Simple Hello Hook"
+description = "SonarQube pre-commit hook"
 readme = "README.md"
 requires-python = ">=3.7"
+dependencies = ["requests"]
 
 [project.scripts]
-hello-hook = "hooks.hello_hook:main"
+check-sonar-quality-gate = "hooks.sonar_checks:main"
 
 [tool.setuptools]
 packages = ["hooks"]
