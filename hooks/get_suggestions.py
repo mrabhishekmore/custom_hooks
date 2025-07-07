@@ -3,18 +3,20 @@ from huggingface_hub import InferenceClient
 import httpx
 import certifi
 
+import ssl
+ssl_context = ssl.create_default_context(cafile=certifi.where())
+httpx._client.DEFAULT_CIPHERS = ssl_context.get_ciphers()
+
 # Load token from environment
 HF_TOKEN = os.environ.get("HF_TOKEN")
 if not HF_TOKEN:
     raise ValueError("HF_TOKEN environment variable is not set.")
 
-http_client = httpx.Client(verify=certifi.where())
 
 # Create HF Inference client with Novita provider (LLaMA 3.1)
 client = InferenceClient(
     provider="novita",
-    api_key=HF_TOKEN,
-    client=http_client
+    api_key=HF_TOKEN
 )
 
 def get_code_suggestion_from_error(prompt: str) -> str:
