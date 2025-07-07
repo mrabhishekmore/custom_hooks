@@ -1,7 +1,6 @@
 import os
 from huggingface_hub import InferenceClient
 
-os.environ["CURL_CA_BUNDLE"]=""
 # Load token from environment
 HF_TOKEN = os.environ.get("HF_TOKEN")
 if not HF_TOKEN:
