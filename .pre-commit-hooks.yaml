@@ -1,5 +1,5 @@
-- id: check-sonar-quality-gate
-  name: Check SonarQube Quality Gate
-  entry: check-sonar-quality-gate
+- id: hello-hook
+  name: Hello Hook
+  entry: hello-hook
   language: python
   pass_filenames: false
