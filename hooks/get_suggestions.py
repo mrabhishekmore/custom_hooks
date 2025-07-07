@@ -1,11 +1,5 @@
 import os
 from huggingface_hub import InferenceClient
-import httpx
-import certifi
-
-import ssl
-ssl_context = ssl.create_default_context(cafile=certifi.where())
-httpx._client.DEFAULT_CIPHERS = ssl_context.get_ciphers()
 
 # Load token from environment
 HF_TOKEN = os.environ.get("HF_TOKEN")
