@@ -4,7 +4,7 @@ import requests
 import time
 import re
 import os
-from get_suggestions import get_code_suggestion_from_error
+from hooks.get_suggestions import get_code_suggestion_from_error
 
 class SonarQubeCheck:
     def __init__(self, host, project_key, token):
