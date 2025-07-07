@@ -1,6 +1,7 @@
 import os
 from huggingface_hub import InferenceClient
 import httpx
+import certifi
 
 # Load token from environment
 HF_TOKEN = os.environ.get("HF_TOKEN")
