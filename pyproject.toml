@@ -6,7 +6,6 @@ requires = ["setuptools", "wheel"]
 name = "custom-hooks"
 version = "0.1.0"
 description = "SonarQube pre-commit hook"
-readme = "README.md"
 requires-python = ">=3.7"
 dependencies = ["requests"]
 
