@@ -1,20 +1,36 @@
 import os
-import shutil
-from pathlib import Path
 
 def main():
-    hooks_dir = Path(".git/hooks")
-    hooks_dir.mkdir(parents=True, exist_ok=True)
+    hook_path = os.path.join(".git", "hooks", "prepare-commit-msg")
 
-    prepare_hook_path = hooks_dir / "prepare-commit-msg"
-    source_script_path = Path(__file__).parent / "prepare_commit_msg.sh"
+    # The bash script content
+    hook_content = """#!/bin/bash
+
+msg_file="$1"
+status_file=".git/.sonar_task_status"
+
+if [[ -f "$status_file" ]]; then
+    task_status=$(cat "$status_file")
+
+    first_line=$(head -n1 "$msg_file")
+    rest=$(tail -n +2 "$msg_file")
+
+    echo "${first_line} ${task_status}" > "$msg_file"
+    echo "$rest" >> "$msg_file"
+
+    rm -f "$status_file"
+fi
+"""
 
     try:
-        shutil.copyfile(source_script_path, prepare_hook_path)
-        os.chmod(prepare_hook_path, 0o755)
-        print(f"✔️ prepare-commit-msg hook installed at {prepare_hook_path}")
-    except Exception as e:
-        print(f"❌ Failed to install prepare-commit-msg hook: {e}")
-        return 1
+        with open(hook_path, "w") as f:
+            f.write(hook_content)
 
-    return 0
+        # Make the file executable
+        os.chmod(hook_path, 0o755)
+        print("✅ prepare-commit-msg hook installed successfully.")
+    except Exception as e:
+        print(f"❌ Failed to install hook: {e}")
+
+if __name__ == "__main__":
+    main()
