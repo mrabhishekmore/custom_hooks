@@ -1,8 +1,10 @@
 import os
 from huggingface_hub import InferenceClient
+from hooks.setup_details import get_decrypted_tokens
 
-# Load token from environment
-HF_TOKEN = os.environ.get("HF_TOKEN")
+# Load token from encrypted key
+tokens = get_decrypted_tokens()
+HF_TOKEN = tokens["HF_TOKEN"]
 if not HF_TOKEN:
     raise ValueError("HF_TOKEN environment variable is not set.")
 
