@@ -247,7 +247,7 @@ class SonarQubeCheck:
 
 
 def main():
-    tokens = get_decrypted_tokens(
+    tokens = get_decrypted_tokens()
     sonar_token = tokens["SONAR_TOKEN"]
     if not sonar_token:
         print("SONAR_TOKEN not found in environment.")
