@@ -5,6 +5,7 @@ import time
 import re
 import os
 from hooks.get_suggestions import get_code_suggestion_from_error
+from hooks.setup_details import get_decrypted_tokens
 
 class SonarQubeCheck:
     def __init__(self, host, project_key, token):
@@ -246,7 +247,8 @@ class SonarQubeCheck:
 
 
 def main():
-    sonar_token = os.environ.get("SONAR_TOKEN")
+    tokens = get_decrypted_tokens(
+    sonar_token = tokens["SONAR_TOKEN"]
     if not sonar_token:
         print("SONAR_TOKEN not found in environment.")
         exit(1)
