@@ -1,5 +1,5 @@
 import os
-from huggingface_hub import InferenceClient
+from openai import OpenAI
 from hooks.setup_details import get_decrypted_tokens
 
 # Load token from encrypted key
@@ -10,9 +10,9 @@ if not HF_TOKEN:
 
 
 # Create HF Inference client with Novita provider (LLaMA 3.1)
-client = InferenceClient(
-    provider="novita",
-    api_key=HF_TOKEN
+client = OpenAI(
+    base_url="https://router.huggingface.co/v1",
+    api_key=HF_TOKEN,
 )
 
 def get_code_suggestion_from_error(prompt: str) -> str:
@@ -27,7 +27,7 @@ def get_code_suggestion_from_error(prompt: str) -> str:
     """
     try:
         completion = client.chat.completions.create(
-            model="meta-llama/Llama-3.1-8B-Instruct",
+            model="meta-llama/Llama-3.1-8B-Instruct:novita",
             messages=[
                 {
                     "role": "user",
@@ -39,3 +39,4 @@ def get_code_suggestion_from_error(prompt: str) -> str:
 
     except Exception as e:
         return f"[Error contacting Hugging Face Novita API]: {repr(e)}"
+
