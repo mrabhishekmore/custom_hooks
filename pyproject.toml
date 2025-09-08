@@ -12,7 +12,7 @@ dependencies = ["requests","huggingface_hub","cryptography","openai","keyboard"]
 [project.scripts]
 check-sonar-quality-gate = "hooks.sonar_checks:main"
 audit-setup = "hooks.audit_setup:main"
-adq-review = "hooks.aqd_review:main"
+aqd-review = "hooks.aqd_review:main"
 
 [tool.setuptools]
 packages = ["hooks"]
