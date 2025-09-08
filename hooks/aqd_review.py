@@ -8,7 +8,7 @@ def main():
     # Press Alt + Win + Q
     keyboard.press_and_release('alt+windows+q')
 
-    time.sleep(1)
+    time.sleep(5)
 
     keyboard.write("review workspace")
     keyboard.press_and_release('enter')
